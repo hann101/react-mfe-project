@@ -28,21 +28,11 @@ import Navbar from "./components/Navbar/Navbar";
 import ListItems from "./components/ListItems/ListItems";
 import Session from "./components/Session/Session";
 import Context from "./components/Context/Context";
+import Validate from "./components/Validate/Validate";
+import UseForm from "./components/Useform/UseForm";
 
 function App() {
   const [hello, setHello] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("/cpm_adm/hello")
-      .then(response => setHello(response.data))
-      .catch(error => console.log(error));
-
-    // axios({
-    //   method: 'GET',
-    //   url: 'http://localhost:8080/api/hello'
-    // }).then(response => setHello(response.data))
-  }, []);
 
   return (
     <Routes>
@@ -54,6 +44,9 @@ function App() {
       <Route exact path="/listitems" element={<ListItems />} />
       <Route exact path="/session" element={<Session />} />
       <Route exact path="/context" element={<Context />} />
+
+      <Route exact path="/validate" element={<Validate />} />
+      <Route exact path="/useform" element={<UseForm />} />
     </Routes>
   );
 }
