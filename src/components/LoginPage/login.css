@@ -1,0 +1,169 @@
+body {
+  background-image: url("images/admin/login");
+}
+
+.form-center {
+  background-image: url("images/admin/login");
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.break-line-3 {
+  background-color: rgb(85, 153, 204);
+  height: 3px;
+}
+
+.break-line-1 {
+  background-color: rgb(85, 153, 204);
+  height: 1px;
+  margin-top: 2px;
+}
+
+.form-body {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.logo-responsive {
+  max-width: 490px;
+}
+
+.input-user {
+  font-size: 12px !important;
+}
+
+.user-responsive {
+  padding: 2px 4px 2px 2px;
+}
+
+.pass-responsive {
+  padding: 2px 4px 2px 2px;
+}
+
+.form-bottom {
+  background-color: #1e549a;
+  margin-top: 10px;
+}
+
+.button-responsive {
+  padding: 4px 0px 2px 4px;
+}
+
+.form-bottom-center {
+  background-color: #1b539a;
+  padding: 2px 0px 2px 0px;
+  float: right;
+}
+
+.form-bottom-center-content {
+  text-align: right;
+  display: flex;
+  align-items: center;
+}
+
+button.button-hide {
+  width: 60px;
+  background-color: #1b549a;
+  border: burlywood;
+}
+
+.login-form {
+  border: 1px solid white;
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto 0;
+  max-width: 510px;
+  padding: 10px;
+  width: 100%;
+  background-color: white;
+}
+
+.login-form input {
+  width: 110px;
+}
+
+.login-form .submit {
+  background: crimson;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+}
+
+.login-error {
+  background: crimson;
+  color: white;
+  margin: 1rem -1rem 0;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 38px;
+  height: 8px;
+}
+
+/* Modified from https://loading.io/css/ */
+.loader div {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.loader div:nth-child(1) {
+  left: 4px;
+  animation: loader1 0.6s infinite;
+}
+
+.loader div:nth-child(2) {
+  left: 4px;
+  animation: loader2 0.6s infinite;
+}
+
+.loader div:nth-child(3) {
+  left: 16px;
+  animation: loader2 0.6s infinite;
+}
+
+.loader div:nth-child(4) {
+  left: 28px;
+  animation: loader3 0.6s infinite;
+}
+
+@keyframes loader1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes loader3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes loader2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(12px, 0);
+  }
+}
