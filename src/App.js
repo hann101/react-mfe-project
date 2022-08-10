@@ -28,7 +28,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ListItems from "./components/ListItems/ListItems";
 import Session from "./components/Session/Session";
 import Context from "./components/Context/Context";
-
+import Main from "./components/Main/Main";
 function App() {
   const [hello, setHello] = useState("");
 
@@ -48,6 +48,8 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route exact path="/login" element={<LoginPage />} />
+      <Route exact path="/main" element={<Main />} />
+
       <Route exact path="/login/list" element={<AdminList />} />
       <Route exact path="/openChangePop" element={<OpenChangePop />} />
       <Route exact path="/nav" element={<Navbar />} />
