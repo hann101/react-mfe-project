@@ -30,6 +30,7 @@ import Session from "./components/Session/Session";
 import Context from "./components/Context/Context";
 import Validate from "./components/Validate/Validate";
 import UseForm from "./components/Useform/UseForm";
+import FormikTest from "./components/FormikTest/FormikTest";
 
 function App() {
   const [hello, setHello] = useState("");
@@ -47,6 +48,7 @@ function App() {
 
       <Route exact path="/validate" element={<Validate />} />
       <Route exact path="/useform" element={<UseForm />} />
+      <Route exact path="/formikTest" element={<FormikTest />} />
     </Routes>
   );
 }

@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import axiosClient from "../../utils/axiosClient";
+import { setLocale } from "yup";
+import * as yup from "yup";
 
 function Loginpage() {
+  //Input validation check
+  let schema = yup.object().shape({
+    smartuxId: yup.string().required(),
+    smartuxPwd: yup.string().required()
+  });
+
   useEffect(componentDidMount, []);
 
   function componentDidMount() {
@@ -26,14 +34,33 @@ function Loginpage() {
     console.log("smartuxPwd: " + smartuxPwd);
 
     let data = {
-      smartuxId: smartuxId,
+      c: smartuxId,
       smartuxPwd: smartuxPwd
     };
 
-    let data2 = {
-      smartuxId: "1231",
-      smartuxPwd: "asdf"
-    };
+    //isValid schema에 정의된 내용을 기반으로 유효성 검사.
+    schema
+      .validate(data)
+      // .then(function (valid) {
+      //   console.log("유효성 검사 성공 : " + data);
+      // })
+      .catch(function (err) {
+        console.log(err.name);
+        console.log(err.errors);
+        // smartuxId is a required field']
+
+        // alert("유효성 검사 실패");
+        alert("아이디와 비밀번호 미기제");
+      });
+
+    //yup.object().shape().cast()는 값을 넣어서 json형태로 나오게 할 수 잇음.
+    // let ex = schema.cast({
+    //   smartuxId: "jimmy",
+    //   smartuxPwd: "24"
+    // });
+
+    // console.log("schema.cast()" + ex);
+
     // axios
     //   .post("/admin/login/login", null, { params: data })
     //   .then(function (response) {
@@ -62,12 +89,12 @@ function Loginpage() {
         headers: { "Content-Type": "application/json" }
       })
       .then(res => {
-        let accessToken = res.headers.authorization;
+        let accessToken = res.data.authorization;
 
         console.log(accessToken);
         if (accessToken != null) {
           console.log("shitt");
-          localStorage.setItem("AccessToken", accessToken);
+          // localStorage.setItem("AccessToken", accessToken);
           window.location.href = "/";
         } else {
           //

@@ -1,47 +1,34 @@
-import { ConstructionOutlined } from "@mui/icons-material";
 import React from "react";
 import { useForm } from "react-hook-form";
-import "./styles.css";
-let renderCount = 0;
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-function UseForm() {
+const schema = yup
+  .object({
+    firstName: yup.string().required(),
+    age: yup.number().positive().integer().required()
+  })
+  .required();
+
+export default function App() {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(schema)
+  });
+  const onSubmit = data => console.log(data);
 
-  console.log(errors);
   return (
-    <div>
-      <header>Hello this is New world!</header>
-      <form
-        onSubmit={handleSubmit(data => {
-          console.log(data);
-        })}
-      >
-        <input
-          {...register("firstName", { required: "This is required." })}
-          placeholder="FirstName"
-        />
-        {/* {errors.firstName?.message} */}
-        {errors.firstName && <p>{errors.firstName.message}</p>}
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("firstName")} />
+      <p>{errors.firstName?.message}</p>
 
-        <input
-          {...register("lastName", {
-            required: "This is required.",
-            minLength: {
-              value: 4,
-              message: "Min length is 4"
-            }
-          })}
-          placeholder="LastName"
-        />
-        {errors.lastName && <p>{errors.lastName.message}</p>}
-        <input type="submit" />
-      </form>
-    </div>
+      <input {...register("age")} />
+      <p>{errors.age?.message}</p>
+
+      <input type="submit" />
+    </form>
   );
 }
-
-export default UseForm;
