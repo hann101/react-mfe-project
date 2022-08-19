@@ -38,20 +38,20 @@ function Loginpage() {
       smartuxPwd: smartuxPwd
     };
 
-    //isValid schema에 정의된 내용을 기반으로 유효성 검사.
-    schema
-      .validate(data)
-      // .then(function (valid) {
-      //   console.log("유효성 검사 성공 : " + data);
-      // })
-      .catch(function (err) {
-        console.log(err.name);
-        console.log(err.errors);
-        // smartuxId is a required field']
+    // //isValid schema에 정의된 내용을 기반으로 유효성 검사.
+    // schema
+    //   .validate(data)
+    //   // .then(function (valid) {
+    //   //   console.log("유효성 검사 성공 : " + data);
+    //   // })
+    //   .catch(function (err) {
+    //     console.log(err.name);
+    //     console.log(err.errors);
+    //     // smartuxId is a required field']
 
-        // alert("유효성 검사 실패");
-        alert("아이디와 비밀번호 미기제");
-      });
+    //     // alert("유효성 검사 실패");
+    //     alert("아이디와 비밀번호 미기제");
+    //   });
 
     //yup.object().shape().cast()는 값을 넣어서 json형태로 나오게 할 수 잇음.
     // let ex = schema.cast({

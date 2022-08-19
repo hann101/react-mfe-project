@@ -1,7 +1,7 @@
 import { ConstructionOutlined } from "@mui/icons-material";
 import React from "react";
 import { useForm } from "react-hook-form";
-import "./styles.css";
+// import "./styles.css";
 let renderCount = 0;
 
 function UseForm() {

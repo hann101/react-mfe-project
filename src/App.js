@@ -34,8 +34,6 @@ import FormikTest from "./components/FormikTest/FormikTest";
 
 import Main from "./components/Main/Main";
 function App() {
-  const [hello, setHello] = useState("");
-
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />

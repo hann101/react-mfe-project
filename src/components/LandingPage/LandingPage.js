@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import axiosClient from "../../utils/axiosClient";
 
@@ -18,7 +18,12 @@ function LandingPage() {
   //   .then(function () {
   //     // 항상 실행되는 영역
   //   });
-  return <div>LandingPage</div>;
+  return (
+    <>
+      <div>LandingPage</div>
+      <p>{process.env.REACT_APP_HOST}</p>
+    </>
+  );
 }
 
 export default LandingPage;
