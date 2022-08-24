@@ -2,6 +2,8 @@ import { ConstructionOutlined } from "@mui/icons-material";
 import React from "react";
 import { useForm } from "react-hook-form";
 // import "./styles.css";
+import * as common from "../../components/Popup/confirm";
+
 let renderCount = 0;
 
 function UseForm() {
@@ -26,6 +28,10 @@ function UseForm() {
         />
         {/* {errors.firstName?.message} */}
         {errors.firstName && <p>{errors.firstName.message}</p>}
+        {/* {errors.firstName &&
+          common
+            .alert(errors.firstName.message)
+            .then(() => console.log("###samplePopup alert confirm"))} */}
 
         <input
           {...register("lastName", {

@@ -30,8 +30,9 @@ import Session from "./components/Session/Session";
 import Context from "./components/Context/Context";
 import Validate from "./components/Validate/Validate";
 import UseForm from "./components/Useform/UseForm";
+import YupUseForm from "./components/Useform/YupUseForm";
 import FormikTest from "./components/FormikTest/FormikTest";
-
+import SamplePopup from "./components/Popup/SamplePopup";
 import Main from "./components/Main/Main";
 function App() {
   return (
@@ -49,7 +50,10 @@ function App() {
 
       <Route exact path="/validate" element={<Validate />} />
       <Route exact path="/useform" element={<UseForm />} />
+      <Route exact path="/yupuseform" element={<YupUseForm />} />
+
       <Route exact path="/formikTest" element={<FormikTest />} />
+      <Route exact path="/popup" element={<SamplePopup />} />
     </Routes>
   );
 }

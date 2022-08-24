@@ -22,6 +22,7 @@ function LandingPage() {
     <>
       <div>LandingPage</div>
       <p>{process.env.REACT_APP_HOST}</p>
+      <p>{process.env.REACT_APP_ABC}</p>
     </>
   );
 }

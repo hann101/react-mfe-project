@@ -1,26 +1,9 @@
-import * as yup from "yup";
-let schema = yup.object().shape({
-  name: yup.string().required(),
-  age: yup.number().required().positive().integer(),
-  email: yup.string().email(),
-  website: yup.string().url(),
-  createdOn: yup.date().default(function () {
-    return new Date();
-  })
-});
+import setLocale from "yup";
 
-schema
-  .isValid({
-    name: "Jimmy",
-    age: 24
-  })
-  .then(function (valid) {
-    console.log(valid); // => true
-  })
-  .catch();
-
-schema.cast({
-  name: "jimmy",
-  age: "24",
-  createdOn: "2014-09-23T19:25:25Z"
+setLocale({
+  // use constant translation keys for messages without values
+  mixed: {
+    required: "é um campo obrigatório"
+  }
+  // use functions to generate an error object that includes the value from the schema
 });
