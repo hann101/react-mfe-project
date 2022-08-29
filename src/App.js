@@ -34,6 +34,9 @@ import YupUseForm from "./components/Useform/YupUseForm";
 import FormikTest from "./components/FormikTest/FormikTest";
 import SamplePopup from "./components/Popup/SamplePopup";
 import Main from "./components/Main/Main";
+
+import SiteList from "./components/SiteList/SiteList";
+import SampleList from "./components/SiteList/SampleList";
 function App() {
   return (
     <Routes>
@@ -54,6 +57,9 @@ function App() {
 
       <Route exact path="/formikTest" element={<FormikTest />} />
       <Route exact path="/popup" element={<SamplePopup />} />
+
+      <Route exact path="/sitelist" element={<SiteList />} />
+      <Route exact path="/list" element={<SampleList />} />
     </Routes>
   );
 }

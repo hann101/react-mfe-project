@@ -2,11 +2,11 @@ import axios from "axios";
 
 const axiosClient = axios.create({
   timeout: 180000,
-  withCredentials: false,
-  headers: {
-    //localStorge에서 받은 refresh token
-    Authorization: `Bearer testToken`
-  }
+  withCredentials: false
+  // headers: {
+  //   //localStorge에서 받은 refresh token
+  //   Authorization: `Bearer testToken`
+  // }
 });
 
 // Add a request interceptor
@@ -18,7 +18,7 @@ axiosClient.interceptors.request.use(
     if (accessToken) {
       config.headers["Content-Type"] = "application/json; charset=utf-8";
 
-      config.headers["Authorization"] = "Bearer " + accessToken;
+      // config.headers["Authorization"] = "Bearer " + accessToken;
     }
     return config;
   },

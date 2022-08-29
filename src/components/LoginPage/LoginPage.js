@@ -6,10 +6,10 @@ import * as yup from "yup";
 
 function Loginpage() {
   //Input validation check
-  let schema = yup.object().shape({
-    smartuxId: yup.string().required(),
-    smartuxPwd: yup.string().required()
-  });
+  // let schema = yup.object().shape({
+  //   smartuxId: yup.string().required(),
+  //   smartuxPwd: yup.string().required()
+  // });
 
   useEffect(componentDidMount, []);
 
@@ -84,7 +84,7 @@ function Loginpage() {
     //     console.log("login request end");
     //   });
 
-    axiosClient
+    axios
       .post("/admin/login", JSON.stringify(data), {
         headers: { "Content-Type": "application/json" }
       })
