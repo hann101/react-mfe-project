@@ -6,10 +6,11 @@ import SearchInputBar from "../Search/SearchInputBar";
 import SearchSubmitButton from "../../components/Search/SearchSubmitButton";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import axiosClient from "../../utils/axiosClient";
+import { Button } from "@material-ui/core";
 
 function SiteList() {
-  const test = axiosClient.get("amims/hotvod/hello");
-  console.log(test);
+  //   const test = axiosClient.get("amims/hotvod/hello");
+  //   console.log(test);
 
   const columns = [
     {
@@ -39,7 +40,7 @@ function SiteList() {
     },
     {
       id: "reg_id",
-      label: "등록아디",
+      label: "등록아이디",
       width: "20"
     }
   ];
@@ -60,8 +61,52 @@ function SiteList() {
       findName,
       findValue
     }).then(data => {
-      setList(data);
-      //   setTotal(data.pageCount);
+      //   console.log("testsetsetetset");
+      //   console.log(data.list);
+      setList(data.list);
+      setTotal(data.pageCount);
+    });
+  }
+
+  /**
+   * search handler
+   * */
+  function handleSearch() {
+    const conditions = {
+      pageNum: 0, //search시 pageNum은 '0'부터 조회
+      findName: findName,
+      findValue: findValue
+    };
+
+    getSiteList(conditions).then(data => {
+      setList(data.list);
+      setTotal(data.pageCount);
+    });
+  }
+
+  function handleChangeSrchKey(value) {
+    setFindName(value);
+  }
+
+  function handleChangeFindValue(value) {
+    setFindValue(value);
+  }
+
+  /**
+   * pagination handler
+   * */
+  function handleChangePage(page) {
+    setPageNum(Number(page));
+
+    const conditions = {
+      pageNum: Number(page),
+      findName,
+      findValue
+    };
+
+    getSiteList(conditions).then(data => {
+      setList(data.list);
+      setTotal(data.pageCount);
     });
   }
 
@@ -85,6 +130,27 @@ function SiteList() {
                 align="center"
               >
                 <tbody>
+                  <tr>
+                    <td>
+                      <SearchForm
+                        className="search_table"
+                        onSubmit={handleSearch}
+                      >
+                        <SearchSelect
+                          defaultValue="USER_ID"
+                          name="findName"
+                          options={[{ label: "사이트", value: "site_id" }]}
+                          onChange={handleChangeSrchKey}
+                        />
+                        <SearchInputBar
+                          name="findValue"
+                          value={findValue}
+                          onChange={handleChangeFindValue}
+                        />
+                        <SearchSubmitButton />
+                      </SearchForm>
+                    </td>
+                  </tr>
                   <tr>
                     <td className="3_line" height="1"></td>
                   </tr>
@@ -125,6 +191,9 @@ function SiteList() {
                         data={list || []}
                         usePagination
                         total={total}
+                        pageSize={10}
+                        currentPage={pageNum}
+                        onChangePage={handleChangePage}
                       />
                     </td>
                   </tr>
@@ -135,72 +204,51 @@ function SiteList() {
           </tr>
         </tbody>
       </table>
+      <Button href="/reg" variant="contained">
+        등록
+      </Button>
     </>
   );
-}
-
-async function getSiteList(searchParams) {
-  axiosClient.get("amims/hotvod/sites").then(res => {
-    console.log(res.data);
-  });
 }
 
 /**
  * [GET] /hdtv_adm/admin/login/list.do : 관리자 리스트
  * */
-// async function getSiteList(searchParams) {
-//   try {
-//     //api 호출 결과 sample
-//     const result = {
-//       data: [
-//         {
-//           site_id: "S0001",
-//           site_name: "11",
-//           site_url: "411",
-//           site_img_tv: null,
-//           reg_dt: "2021-01-12T15:28:36",
-//           reg_id: "admin"
-//         },
-//         {
-//           site_id: "S0004",
-//           site_name: "google",
-//           site_url: "www.google.co.kr",
-//           site_img_tv: null,
-//           reg_dt: "2022-04-28T15:21:50",
-//           reg_id: "admin"
-//         },
-//         {
-//           site_id: "H0001",
-//           site_name: "naver",
-//           site_url: "www.naver.com",
-//           site_img_tv: "www.naver.com",
-//           reg_dt: "2022-01-18T18:48:54",
-//           reg_id: "admin"
-//         },
-//         {
-//           site_id: "S0002",
-//           site_name: "naver",
-//           site_url: "www.naver.com",
-//           site_img_tv: null,
-//           reg_dt: "2021-11-02T16:40:11",
-//           reg_id: "admin"
-//         },
-//         {
-//           site_id: "S0003",
-//           site_name: "kakao",
-//           site_url: "www.kakao.com",
-//           site_img_tv: null,
-//           reg_dt: "2021-11-02T16:40:26",
-//           reg_id: "admin"
-//         }
-//       ],
-//       dataType: "LIST",
-//       dataCount: 5
-//     };
-//     return result.data;
-//   } catch (e) {
-//     return {};
-//   }
-// }
+async function getSiteList(searchParams) {
+  // searchParams.
+  try {
+    const response = await axiosClient.get("amims/hotvod/sites", {
+      params: { findValue: searchParams.findValue }
+    });
+
+    console.log("test");
+    console.log(response.data.result.data);
+    console.log("--------response.data.result-----");
+    console.log(response.data.result.dataCount);
+    console.log("--------response.data.result.dataCount-----");
+
+    //api 호출 결과 sample
+    const result = {
+      data: {
+        vo: {
+          list: response.data.result.data,
+          pageSize: 10,
+          blockSize: 10,
+          pageNum: 1,
+          pageCount: response.data.result.dataCount,
+          findName: "USER_ID",
+          findValue: "test",
+          start_rnum: 1,
+          end_rnum: 10,
+          validate: ""
+        }
+      }
+    };
+
+    return result.data?.vo;
+  } catch (e) {
+    return {};
+  }
+}
 
 export default SiteList;

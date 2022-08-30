@@ -37,6 +37,8 @@ import Main from "./components/Main/Main";
 
 import SiteList from "./components/SiteList/SiteList";
 import SampleList from "./components/SiteList/SampleList";
+import Registration from "./components/Registration/Registration";
+
 function App() {
   return (
     <Routes>
@@ -60,6 +62,7 @@ function App() {
 
       <Route exact path="/sitelist" element={<SiteList />} />
       <Route exact path="/list" element={<SampleList />} />
+      <Route exact path="/reg" element={<Registration />} />
     </Routes>
   );
 }
